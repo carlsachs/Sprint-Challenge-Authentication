@@ -27,34 +27,18 @@ describe('POST /api/auth/register', () => {
     });
 });
 
-// describe('POST/', () => {
-//     beforeEach(async () => {
-//         await knexDB('users').truncate();
-//     })
-//     //TEST 
-//     it('should insert 2 new users}', async () => {
-//         await db.add({username:'User1', password: 'password1'});
-//         await db.add({username: 'User2', password: 'password2'});
 
-//         const users = await knexDB('users');
-//         expect(users).toHaveLength(2);
-//     })
-//     it('should return 200 ok', async () => {
-//         const res = await request(server).get('/');
-//         expect(res.status).toBe(200);
-//         })   
+ 
+describe('GET /api/jokes', function() {
+    it('Should return with JSON', async function(){
+    const res = await request(server)
+    .get('/api/jokes')
+    expect(res.type).toMatch(/json/i)
+})
 
-// })  
-
-describe('GET /api/jokes', () => {
-    it('should return 200 ok', async () => {
-        const res = await request(server).get('/api/jokes');
-        expect(res.status).toBe(200);
-        })   
-
-    it('should return JSON object', async () => {
-        const response = await request(server)
-            .get('/api/jokes');
-        expect(response.type).toMatch(/json/i);
-    })
-}); 
+it('Should return objects', async function(){
+    const res = await request(server)
+    .post('/api/jokes')
+    expect(typeof res.body).toBe("object")
+})
+})
