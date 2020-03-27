@@ -28,6 +28,24 @@ describe('POST /api/auth/register', () => {
 });
 
 
+describe('POST /api/auth/login', function(){
+
+    it('Should return a status 200', async function(){
+        const res = await request(server)
+        .post('/api/auth/login')
+        .send({ username: "Carlton", password: "Banks" })
+        expect(res.status).toBe(200)
+    })
+
+    it('Should return with JSON', async function(){
+        const res = await request(server)
+        .post('/api/auth/login')
+        .send({ username: "Carlton", password: "Banks" })
+        expect(res.type).toMatch(/json/i)
+    })
+})
+
+
  
 describe('GET /api/jokes', function() {
     it('Should return with JSON', async function(){
